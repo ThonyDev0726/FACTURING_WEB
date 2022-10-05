@@ -1,5 +1,6 @@
 package ModelDAO;
 
+import Converters.Encriptador;
 import DataBase.Conexion;
 import Interfaces.crud_usuario;
 import Model.USUARIO;
@@ -17,6 +18,7 @@ import java.util.List;
 public class USUARIO_DAO implements crud_usuario {
 
     /* ========= VARIABLES GLOBALES ========= */
+    Encriptador enc = new Encriptador();
     USUARIO c = new USUARIO();
     Conexion cn = new Conexion();
     CallableStatement cs;
@@ -30,6 +32,7 @@ public class USUARIO_DAO implements crud_usuario {
     String CONSULTAR_ESTADO = "CALL U_S_USU_ESTADO(?)";
     String LISTAR = "CALL SELECT_ALL_USUARIO()";
     String LISTAR_ID = "CALL A_S_ID_USUARIO(?)";
+    String CREAR = "CALL INSERT_USUARIO(?,?,?,?,?,?,?,?,?,?,?)";
 
     /* ========= VARIABLES PROCEDIMIENTOS PARAMETROS ========= */
     Integer ID_USUARIO;
@@ -167,7 +170,28 @@ public class USUARIO_DAO implements crud_usuario {
 
     @Override
     public String add(USUARIO mp) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        try {
+            con = (Connection) cn.getConexion();
+            cs = con.prepareCall(CREAR);
+            cs.setInt(1, mp.getFK_SUCURSAL());
+            cs.setInt(2, mp.getFK_EMPLEADO());
+            cs.setString(3, mp.getUSU_USUARIO());
+            cs.setString(4, enc.encriptar(mp.getUSU_CLAVE()));
+            cs.setString(5, mp.getUSU_PARAMETRO());
+            cs.setString(6, mp.getUSU_CODIGO());
+            cs.setString(7, mp.getUSU_CREACION());
+            cs.setString(8, mp.getUSU_CREADOR());
+            cs.setString(9, mp.getUSU_IP());
+            cs.setString(10, mp.getUSU_ACTIVIDAD());
+            cs.setString(11, mp.getUSU_ESTADO());
+            cs.execute();
+            System.out.println(CREAR);
+        } catch (SQLException ex) {
+            System.out.println("ERROR AL CREAR EL USUARIO");
+            System.out.println(ex);
+            return "El usuario no fue creado con exito!";
+        }
+        return "El usuario fue creado con exito!";
     }
 
     @Override

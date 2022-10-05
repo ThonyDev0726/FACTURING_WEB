@@ -106,23 +106,18 @@
                 <div class="home__container container grid">
                     <div class="home__content grid">
                         <div class="home__social">
-
-                            <a href="https://github.com/" target="_blank" class="home__social-icon">
+                            <a href="https://facebook.com/" target="_blank" class="home__social-icon">
                                 <i class="uil uil-facebook-f"></i>
-                            </a>
-                            
-                            <a href="https://github.com/" target="_blank" class="home__social-icon">
+                            </a>                           
+                            <a href="https://twitter.com/" target="_blank" class="home__social-icon">
                                 <i class="uil uil-twitter"></i>
                             </a>
-
-                            <a href="https://dribbble.com/" target="_blank" class="home__social-icon">
+                            <a href="https://instagram.com/" target="_blank" class="home__social-icon">
                                 <i class="uil uil-instagram"></i>
                             </a>
-
-                            <a href="https://www.linkedin.com/" target="_blank" class="home__social-icon">
+                            <a href="https://www.tiktok.com/" target="_blank" class="home__social-icon">
                                 <i class="uil uil-music-note"></i>
                             </a>
-
                         </div>
                         <div class="home__img">
                             

@@ -43,10 +43,7 @@
                                 <i class="uil uil-user-plus nav__icon"></i> Registrame
                             </a>
                         </li>
-
-
                     </ul>
-
                     <i class="uil uil-times nav__close" id="nav-close"></i>
                 </div>
 
@@ -68,26 +65,25 @@
                 <div class="home__container container grid">
                     <div class="home__content grid">
                         <div class="home__social">
-
-                            <a href="https://github.com/" target="_blank" class="home__social-icon">
+                            <a href="https://facebook.com/" target="_blank" class="home__social-icon">
                                 <i class="uil uil-facebook-f"></i>
                             </a>
+                            
+                            <a href="https://twitter.com/" target="_blank" class="home__social-icon">
+                                <i class="uil uil-twitter"></i>
+                            </a>
 
-                            <a href="https://dribbble.com/" target="_blank" class="home__social-icon">
+                            <a href="https://instagram.com/" target="_blank" class="home__social-icon">
                                 <i class="uil uil-instagram"></i>
                             </a>
 
-                            <a href="https://www.linkedin.com/" target="_blank" class="home__social-icon">
-                                <i class="uil uil-linkedin-alt"></i>
+                            <a href="https://www.tiktok.com/" target="_blank" class="home__social-icon">
+                                <i class="uil uil-music-note"></i>
                             </a>
-
                         </div>
-
                         <div class="home__img">
                             <img src="https://drive.google.com/uc?export=download&id=17xgsBG92LBukV5EPP3rKLoKEz_dXYeHt" width="25" height="25" class="home__blob-img"  alt="">
-
                         </div>
-
                         <div class="home__data">
                             <form method="post" action="Login">
                                 <h1 class="home__title">Iniciar sesion</h1>
@@ -109,9 +105,7 @@
                                     <h4 style="color: #007bb6;">${iniciarSesion}</h4>
                                     <h5 style="color: red;">${errorSesion}</h5>
                                 </center>
-                                <br>
                                 <input class="button button--flex" style="border: none;" type="submit" value="INGRESAR" name="btn-login">
-
                             </form>
                         </div>
                     </div>
