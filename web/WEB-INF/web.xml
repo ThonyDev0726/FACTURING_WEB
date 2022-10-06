@@ -51,7 +51,7 @@
     <session-config>
         <session-timeout>
             <!--MINUTOS POR SESION-->
-            10
+            15
         </session-timeout>
     </session-config>
 </web-app>

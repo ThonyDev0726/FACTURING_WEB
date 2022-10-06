@@ -52,7 +52,6 @@ public class USUARIO_DAO implements crud_usuario {
             while (rs.next()) {
                 ID_USUARIO = Integer.parseInt(rs.getString(1));
             }
-            System.out.println(CONSULTAR_USUARIO);
         } catch (SQLException ex) {
             System.out.println("ID_USUARIO no encontrado: " + ex);
             return 0;
@@ -70,7 +69,6 @@ public class USUARIO_DAO implements crud_usuario {
             while (rs.next()) {
                 CLAVE = rs.getString(1);
             }
-            System.out.println(CONSULTAR_CLAVE);
         } catch (Exception e) {
             System.out.println("USU_CLAVE no encontrada: " + e);
         }
@@ -87,7 +85,6 @@ public class USUARIO_DAO implements crud_usuario {
             while (rs.next()) {
                 CARGO = rs.getString(1);
             }
-            System.out.println(CONSULTAR_USUARIO);
         } catch (Exception e) {
             System.out.println("USU_CARGO no encontrada: " + e);
         }
@@ -104,7 +101,6 @@ public class USUARIO_DAO implements crud_usuario {
             while (rs.next()) {
                 ESTADO = rs.getString(1);
             }
-            System.out.println(CONSULTAR_ESTADO);
         } catch (Exception e) {
             System.out.println("USU_ESTADO no encontrado: " + e);
         }
@@ -134,7 +130,6 @@ public class USUARIO_DAO implements crud_usuario {
                 cli.setUSU_CREADOR(rs.getString(10));
                 lista.add(cli);
             }
-            System.out.println(LISTAR);
         } catch (SQLException ex) {
             System.out.println("ERROR AL LISTAR LOS USUARIOS" + ex);
         }
@@ -155,13 +150,11 @@ public class USUARIO_DAO implements crud_usuario {
                 c.setEMP_APELLIDOS(rs.getString(4));
                 c.setEMP_IMG(rs.getString(5));
                 c.setUSU_USUARIO(rs.getString(6));
-                c.setUSU_CLAVE(rs.getString(7));
+                c.setUSU_CLAVE(enc.desencriptar(rs.getString(7)));
                 c.setUSU_PARAMETRO(rs.getString(8));
                 c.setUSU_ESTADO(rs.getString(9));
                 c.setUSU_CREADOR(rs.getString(10));
             }
-            System.out.println(c.toString());
-            System.out.println(LISTAR_ID);
         } catch (SQLException ex) {
             System.out.println("ERROR AL LISTAR LOS EMPLEADOS" + ex);
         }
@@ -185,7 +178,6 @@ public class USUARIO_DAO implements crud_usuario {
             cs.setString(10, mp.getUSU_ACTIVIDAD());
             cs.setString(11, mp.getUSU_ESTADO());
             cs.execute();
-            System.out.println(CREAR);
         } catch (SQLException ex) {
             System.out.println("ERROR AL CREAR EL USUARIO");
             System.out.println(ex);

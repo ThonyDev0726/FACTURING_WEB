@@ -25,7 +25,7 @@ public class Usuarios extends HttpServlet {
     Convertidor c = new Convertidor();
     //========================================================================================== VARIABLES GLOBALES     
     String REGISTROS = "views/administrador/usuarios.jsp";
-    String EDITAR = "views/administrador/usuarios.jsp";
+    String EDITAR = "views/administrador/usuarios-editar.jsp";
     LocalDate todaysDate = LocalDate.now();
     String fecha = todaysDate.toString();
     /**/
@@ -61,6 +61,10 @@ public class Usuarios extends HttpServlet {
                     request.setAttribute("div_si", "sr-only");
                     request.setAttribute("div_no", "sr-only");
                     acceso = REGISTROS;
+                    break;
+                    case "editar-a":
+                    request.setAttribute("idUsuario", request.getParameter("idUsuario"));
+                    acceso = EDITAR;
                     break;
                 default:
                     acceso = REGISTROS;
@@ -202,3 +206,20 @@ public class Usuarios extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 }
+/*
+CREATE  PROCEDURE UPDATE_USUARIO(
+    IN `ID_USUARIO_V` INT,
+    IN `FK_SUCURSAL_V` INT,
+    IN `USU_CLAVE_V` VARCHAR(255), 
+    IN `USU_PARAMETRO_V` VARCHAR(15), 
+    IN `USU_ESTADO_V` VARCHAR(15)
+    )
+BEGIN
+	UPDATE USUARIO SET 
+		FK_SUCURSAL = FK_SUCURSAL_V,
+        USU_CLAVE = USU_CLAVE_V,
+        USU_PARAMETRO = USU_PARAMETRO_V,
+        USU_ESTADO = USU_ESTADO_V
+    WHERE ID_USUARIO = ID_USUARIO_V;
+END
+*/
