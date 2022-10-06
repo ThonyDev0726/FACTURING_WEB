@@ -26,5 +26,7 @@ public class Convertidor {
         String res = String.valueOf(firstChar).toUpperCase();        
         return res;
     }
+    
+    
 
 }
