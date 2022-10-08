@@ -33,6 +33,9 @@ public class USUARIO_DAO implements crud_usuario {
     String LISTAR = "CALL SELECT_ALL_USUARIO()";
     String LISTAR_ID = "CALL A_S_ID_USUARIO(?)";
     String CREAR = "CALL INSERT_USUARIO(?,?,?,?,?,?,?,?,?,?,?)";
+    String ACTUALIZAR = "CALL UPDATE_USUARIO(?,?,?,?,?)";
+    String ACTUALIZAR_ESTADO = "CALL UPDATE_USUARIO_ESTADO(?,?)";
+    String ELIMINAR = "CALL DELETE_USUARIO(?)";
 
     /* ========= VARIABLES PROCEDIMIENTOS PARAMETROS ========= */
     Integer ID_USUARIO;
@@ -187,23 +190,54 @@ public class USUARIO_DAO implements crud_usuario {
     }
 
     @Override
-    public String update(USUARIO mp) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public String update(USUARIO usu) {
+        try {
+            con = (Connection) cn.getConexion();
+            cs = con.prepareCall(ACTUALIZAR);
+            cs.setInt(1, usu.getID_USUARIO());
+            cs.setInt(2, usu.getFK_SUCURSAL());
+            cs.setString(3, enc.encriptar(usu.getUSU_CLAVE()));
+            cs.setString(4, usu.getUSU_PARAMETRO());
+            cs.setString(5, usu.getUSU_ESTADO());
+            cs.execute();
+        } catch (SQLException ex) {
+            System.out.println("ERROR AL CREAR EL USUARIO");
+            System.out.println(ex);
+            return "El usuario no fue actualizado!";
+        }
+        return "El usuario fue actualizado con exito!";
     }
 
     @Override
     public String delete(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public List listar_en_linea() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        try {
+            con = (Connection) cn.getConexion();
+            CallableStatement cs = con.prepareCall(ELIMINAR);
+            cs.setInt(1, id);
+            System.out.println(ELIMINAR);
+            cs.execute();
+        } catch (SQLException ex) {
+            System.out.println("Error al eliminar el cliente!");
+            System.out.println(ex);
+            return "Error al eliminar el usuario!";
+        }
+        return "El usuario fue eliminado con exito!";
     }
 
     @Override
     public String actualizar_estado(int id, String estado) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+         try {
+            con = (Connection) cn.getConexion();
+            CallableStatement cs = con.prepareCall(ACTUALIZAR_ESTADO);
+            cs.setInt(1, id);
+            cs.setString(2, estado);
+            cs.execute();
+        } catch (SQLException ex) {
+            System.out.println("ERROR AL DAR DE BAJA AL USUARIO");
+            System.out.println(ex);
+            return "Error al dar baja al usuario!";
+        }
+        return "El usuario fue dado de baja con exito!";
     }
 
     @Override

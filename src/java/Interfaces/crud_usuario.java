@@ -24,8 +24,6 @@ public interface crud_usuario {
 
     public String delete(int id);
 
-    public List listar_en_linea();
-
     public String actualizar_estado(int id, String estado);
 
     /* =========== INICIO DE SESION =========== */

@@ -9,6 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
 /**
  *
  * @author perez
@@ -57,7 +58,7 @@ public class CLIENTE_DAO implements crud_cliente {
         }
         return lista;
     }
-    
+
     @Override
     public List listar_en_linea() {
         ArrayList<CLIENTE> lista = new ArrayList<>();
@@ -194,7 +195,5 @@ public class CLIENTE_DAO implements crud_cliente {
         }
         return "El cliente fue eliminado con exito!";
     }
-
-    
 
 }

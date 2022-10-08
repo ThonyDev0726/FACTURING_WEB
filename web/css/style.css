@@ -28086,7 +28086,7 @@ html:not([dir=rtl]) .noUi-horizontal .noUi-handle {
 
 .light.badge-primary {
     background-color: var(--rgba-primary-1);
-    color: var(--primary);
+    color: var(--bs-white);
 }
 [data-theme-version="dark"] .light.badge-primary {
     background-color: var(--rgba-primary-1);
@@ -32140,11 +32140,13 @@ table.dataTable.row-border tbody th, table.dataTable.row-border tbody td, table.
 }
 
 .error-page .error-text {
+    color: red;
     font-size: 9.375rem;
     line-height: 1;
 }
 @media only screen and (max-width: 35.9375rem) {
     .error-page .error-text {
+        color: red;
         font-size: 5rem;
     }
 }
@@ -32174,7 +32176,6 @@ table.dataTable.row-border tbody th, table.dataTable.row-border tbody td, table.
 }
 
 .authincation {
-    background: var(--rgba-primary-1);
     display: flex;
     min-height: 100vh;
 }

@@ -7,8 +7,9 @@ package Model;
 public class CATEGORIA_PRODUCTO {
 
     private Integer ID_CATEGORIA;
-    private String PRO_EMPRESA;
-    private String PRO_ESTADO;
+    private String CAT_DESCRIPCION;
+    private String CAT_ESTADO;
+    private String CAT_IP;
 
     public CATEGORIA_PRODUCTO() {
     }
@@ -21,21 +22,28 @@ public class CATEGORIA_PRODUCTO {
         this.ID_CATEGORIA = ID_CATEGORIA;
     }
 
-    public String getPRO_EMPRESA() {
-        return PRO_EMPRESA;
+    public String getCAT_DESCRIPCION() {
+        return CAT_DESCRIPCION;
     }
 
-    public void setPRO_EMPRESA(String PRO_EMPRESA) {
-        this.PRO_EMPRESA = PRO_EMPRESA;
+    public void setCAT_DESCRIPCION(String CAT_DESCRIPCION) {
+        this.CAT_DESCRIPCION = CAT_DESCRIPCION;
     }
 
-    public String getPRO_ESTADO() {
-        return PRO_ESTADO;
+    public String getCAT_ESTADO() {
+        return CAT_ESTADO;
     }
 
-    public void setPRO_ESTADO(String PRO_ESTADO) {
-        this.PRO_ESTADO = PRO_ESTADO;
+    public void setCAT_ESTADO(String CAT_ESTADO) {
+        this.CAT_ESTADO = CAT_ESTADO;
     }
-    
-    
+
+    public String getCAT_IP() {
+        return CAT_IP;
+    }
+
+    public void setCAT_IP(String CAT_IP) {
+        this.CAT_IP = CAT_IP;
+    }
+
 }

@@ -48,9 +48,13 @@
         <servlet-name>Eventos</servlet-name>
         <url-pattern>/Eventos</url-pattern>
     </servlet-mapping>
+    <error-page>
+        <error-code>404</error-code>
+        <location>/paginas-error/404.jsp</location>
+    </error-page>
     <session-config>
         <session-timeout>
-            <!--MINUTOS POR SESION-->
+            <!-- ======== MINUTOS POR SESION ACTIVA ======== -->
             15
         </session-timeout>
     </session-config>

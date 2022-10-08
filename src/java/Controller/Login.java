@@ -81,7 +81,7 @@ public class Login extends HttpServlet {
                             String PRIMER_NOMBRE = tonkenNombre.nextToken();
                             String PRIMER_APELLIDO = tonkenApellido.nextToken();
                             request.getSession().setAttribute("usuUsuario_global", PRIMER_NOMBRE + " " + PRIMER_APELLIDO);
-                            request.getSession().setAttribute("usuCargo_global", usuCargo);
+                            request.getSession().setAttribute("usuCargo_global", "administrador");
                             request.getSession().setAttribute("usuClave_global", USU_CLAVE);
                             USUARIO usu = new USUARIO(USU_USUARIO, USU_CLAVE);
                             session.setAttribute("usuario", usu);
@@ -98,7 +98,7 @@ public class Login extends HttpServlet {
                             String PRIMER_NOMBRE = tonkenNombre.nextToken();
                             String PRIMER_APELLIDO = tonkenApellido.nextToken();
                             request.getSession().setAttribute("usuUsuario_global", PRIMER_NOMBRE + " " + PRIMER_APELLIDO);
-                            request.getSession().setAttribute("usuCargo_global", usuCargo);
+                            request.getSession().setAttribute("usuCargo_global", "cajero");
                             request.getSession().setAttribute("usuClave_global", USU_CLAVE);
                             USUARIO usu = new USUARIO(USU_USUARIO, USU_CLAVE);
                             session.setAttribute("usuario", usu);

@@ -62,9 +62,38 @@ public class Usuarios extends HttpServlet {
                     request.setAttribute("div_no", "sr-only");
                     acceso = REGISTROS;
                     break;
-                    case "editar-a":
+                case "editar-a":
                     request.setAttribute("idUsuario", request.getParameter("idUsuario"));
                     acceso = EDITAR;
+                    break;
+                case "dar_baja":
+                    ID_USUARIO = Integer.parseInt(request.getParameter("idUsuario"));
+                    USU_ESTADO = "DE BAJA";
+                    /* ========== ENVIO EL OBJETO A LA DB=========*/
+                    if (DAO.actualizar_estado(ID_USUARIO, USU_ESTADO) == "El usuario fue dado de baja con exito!") {
+                        request.setAttribute("msj_si", "El usuario fue dado de baja con exito!");
+                        request.setAttribute("div_si", "visible");
+                        request.setAttribute("div_no", "sr-only");
+                    } else if (DAO.actualizar_estado(ID_USUARIO, USU_ESTADO) == "Error al dar baja al usuario!") {
+                        request.setAttribute("msj_no", "No se pudo dar de baja al usuario!");
+                        request.setAttribute("div_no", "visible");
+                        request.setAttribute("div_si", "sr-only");
+                    }
+                    acceso = REGISTROS;
+                    break;
+                case "eliminar":
+                    ID_USUARIO = Integer.parseInt((String) request.getParameter("idUsuario"));
+                    /* ========== ENVIO EL OBJETO A LA DB=========*/
+                    if (DAO.delete(ID_USUARIO) == "El usuario fue eliminado con exito!") {
+                        request.setAttribute("msj_si", "El usuario fue eliminado con exito");
+                        request.setAttribute("div_si", "visible");
+                        request.setAttribute("div_no", "sr-only");
+                    } else if (DAO.delete(ID_USUARIO) == "Error al eliminar el usuario!") {
+                        request.setAttribute("msj_no", "No se pudo usuario al cliente!");
+                        request.setAttribute("div_no", "visible");
+                        request.setAttribute("div_si", "sr-only");
+                    }
+                    acceso = REGISTROS;
                     break;
                 default:
                     acceso = REGISTROS;
@@ -96,7 +125,8 @@ public class Usuarios extends HttpServlet {
                 case "Guardar":
                     FK_SUCURSAL = Integer.parseInt(request.getParameter("cbx-sucursal"));
                     FK_EMPLEADO_LETRA = request.getParameter("txt-id-empleado");
-                    FK_EMPLEADO = c.obtenerNumero(FK_EMPLEADO_LETRA);;                    
+                    FK_EMPLEADO = c.obtenerNumero(FK_EMPLEADO_LETRA);
+                    ;
                     USU_USUARIO = request.getParameter("txt-cedula");
                     USU_CLAVE = request.getParameter("txt-clave");
                     USU_PARAMETRO = request.getParameter("cbx-parametro");
@@ -132,41 +162,25 @@ public class Usuarios extends HttpServlet {
                     }
                     acceso = REGISTROS;
                     break;
-                case "editar-a":
-                    request.setAttribute("idusuario", request.getParameter("idusuario"));
-                    acceso = EDITAR;
-                    break;
                 case "Actualizar":
-                    ID_USUARIO = Integer.parseInt(request.getParameter(""));
-                    FK_SUCURSAL = Integer.parseInt(request.getParameter(""));
-                    FK_EMPLEADO = Integer.parseInt(request.getParameter(""));
-                    USU_USUARIO = request.getParameter("");
-                    USU_CLAVE = request.getParameter("");
-                    USU_PARAMETRO = request.getParameter("");
-                    USU_CODIGO = request.getParameter("");
-                    USU_CREACION = request.getParameter("");
-                    USU_CREADOR = request.getParameter("");
-                    USU_IP = request.getParameter("");
-                    USU_ACTIVIDAD = request.getParameter("");
-                    USU_ESTADO = request.getParameter("");
+                    ID_USUARIO = Integer.parseInt(request.getParameter("txt-id-usuario"));
+                    USU_USUARIO = request.getParameter("txt-cedula-u");
+                    FK_SUCURSAL = Integer.parseInt(request.getParameter("cbx-sucursal"));
+                    USU_CLAVE = request.getParameter("txt-clave");
+                    USU_PARAMETRO = request.getParameter("cbx-parametro");
+                    USU_ESTADO = request.getParameter("cbx-estado");
                     /* ========== DAR VALORES AL OBJETO ========= */
-                    usu.setFK_EMPLEADO(FK_EMPLEADO);
+                    usu.setID_USUARIO(ID_USUARIO);
                     usu.setFK_SUCURSAL(FK_SUCURSAL);
-                    usu.setUSU_USUARIO(USU_USUARIO);
                     usu.setUSU_CLAVE(USU_CLAVE);
                     usu.setUSU_PARAMETRO(USU_PARAMETRO);
-                    usu.setUSU_CODIGO(USU_CODIGO);
-                    usu.setUSU_CREACION(USU_CREACION);
-                    usu.setUSU_CREADOR(USU_CREADOR);
-                    usu.setUSU_IP(USU_IP);
-                    usu.setUSU_ACTIVIDAD(USU_ACTIVIDAD);
                     usu.setUSU_ESTADO(USU_ESTADO);
                     /* ========== ENVIO EL OBJETO A LA DB========= */
-                    if (DAO.update(this.usu) == "El usuario fue actualizado con exito!") {
+                    if (DAO.update(usu) == "El usuario fue actualizado con exito!") {
                         request.setAttribute("msj_si", "El usuario " + USU_USUARIO + " fue actualizado con exito");
                         request.setAttribute("div_si", "visible");
                         request.setAttribute("div_no", "sr-only");
-                    } else if (DAO.update(this.usu) == "El usuario no fue actualizado!") {
+                    } else if (DAO.update(usu) == "El usuario no fue actualizado!") {
                         request.setAttribute("msj_no", "No se pudo actualizar al usuario " + USU_USUARIO + "!");
                         request.setAttribute("div_no", "visible");
                         request.setAttribute("div_si", "sr-only");
@@ -222,4 +236,4 @@ BEGIN
         USU_ESTADO = USU_ESTADO_V
     WHERE ID_USUARIO = ID_USUARIO_V;
 END
-*/
+ */

@@ -4,7 +4,7 @@ package Model;
  *
  * @author perez
  */
-public class PROVEEDOR {
+public class PROVEEDOR extends SUCURSAL{
 
     private Integer ID_PROVEEDOR;
     private Integer FK_SUCURSAL;
