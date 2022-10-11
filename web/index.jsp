@@ -618,7 +618,6 @@
                         <h1 class="footer__title">HORUS</h1>
                         <span class="footer__subtitle">HORUS de alto nivel</span>
                     </div>
-
                     <ul class="footer__links">
                         <li>
                             <a href="#services" class="footer__link">Servicios</a>
@@ -630,7 +629,6 @@
                             <a href="#contact" class="footer__link">Contactanos</a>
                         </li>
                     </ul>
-
                     <div class="footer__socials">
                         <a href="https://www.facebook.com/" target="_blank" class="footer__social">
                             <i class="uil uil-facebook-f"></i>
@@ -643,7 +641,6 @@
                         </a>
                     </div>
                 </div>
-
                 <p class="footer__copy">&#169; HORUS. Todos los derechos reservados</p>
             </div>
         </footer>
@@ -661,47 +658,25 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="js/loader.js" type="text/javascript"></script>
         <script type="module">
-
             // Import the functions you need from the SDKs you need
-
             import { initializeApp } from "https://www.gstatic.com/firebasejs/9.9.0/firebase-app.js";
-
             import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.9.0/firebase-analytics.js";
-
             // TODO: Add SDKs for Firebase products that you want to use
-
             // https://firebase.google.com/docs/web/setup#available-libraries
-
-
             // Your web app's Firebase configuration
-
             // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-
             const firebaseConfig = {
-
                 apiKey: "AIzaSyC2Ph6vWOrtQ5vPg-Qgt2bRhgUfSNesVUI",
-
                 authDomain: "anthony-e3ad6.firebaseapp.com",
-
                 projectId: "anthony-e3ad6",
-
                 storageBucket: "anthony-e3ad6.appspot.com",
-
                 messagingSenderId: "68135577160",
-
-                appId: "1:68135577160:web:92b7f15ee019aec48d1a7d",
-
+                appId: "1:68135577160:web:92b7f15ee019aec48d1a7d",                
                 measurementId: "G-QFS7MXE37E"
-
             };
-
-
             // Initialize Firebase
-
             const app = initializeApp(firebaseConfig);
-
             const analytics = getAnalytics(app);
-
         </script>
     </body>
 </html>

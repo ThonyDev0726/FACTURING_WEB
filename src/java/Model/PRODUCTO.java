@@ -7,13 +7,18 @@ package Model;
 public class PRODUCTO {
 
     private Integer ID_PRODUCTO;
+    private Integer FK_SUCURSAL;
     private Integer FK_PROVEEDOR;
     private Integer FK_CATEGORIA;
+    private String SUC_NOMBRE;
+    private String PROV_NOMBRE;
+    private String CAT_NOMBRE;
     private String PRO_NOMBRE;
     private String PRO_CODIGO;
     private Integer PRO_STOCK;
+    private Double PRO_VALOR_FABRICA;
     private Double PRO_VALOR_UNITARIO;
-    private Integer PRO_IVA;
+    private Integer PRO_GANANCIA;
     private String PRO_IVA_TIPO;
     private String PRO_USO;
     private String PRO_IMG1;
@@ -36,6 +41,14 @@ public class PRODUCTO {
         this.ID_PRODUCTO = ID_PRODUCTO;
     }
 
+    public Integer getFK_SUCURSAL() {
+        return FK_SUCURSAL;
+    }
+
+    public void setFK_SUCURSAL(Integer FK_SUCURSAL) {
+        this.FK_SUCURSAL = FK_SUCURSAL;
+    }
+
     public Integer getFK_PROVEEDOR() {
         return FK_PROVEEDOR;
     }
@@ -50,6 +63,30 @@ public class PRODUCTO {
 
     public void setFK_CATEGORIA(Integer FK_CATEGORIA) {
         this.FK_CATEGORIA = FK_CATEGORIA;
+    }
+
+    public String getSUC_NOMBRE() {
+        return SUC_NOMBRE;
+    }
+
+    public void setSUC_NOMBRE(String SUC_NOMBRE) {
+        this.SUC_NOMBRE = SUC_NOMBRE;
+    }
+
+    public String getPROV_NOMBRE() {
+        return PROV_NOMBRE;
+    }
+
+    public void setPROV_NOMBRE(String PROV_NOMBRE) {
+        this.PROV_NOMBRE = PROV_NOMBRE;
+    }
+
+    public String getCAT_NOMBRE() {
+        return CAT_NOMBRE;
+    }
+
+    public void setCAT_NOMBRE(String CAT_NOMBRE) {
+        this.CAT_NOMBRE = CAT_NOMBRE;
     }
 
     public String getPRO_NOMBRE() {
@@ -84,12 +121,12 @@ public class PRODUCTO {
         this.PRO_VALOR_UNITARIO = PRO_VALOR_UNITARIO;
     }
 
-    public Integer getPRO_IVA() {
-        return PRO_IVA;
+    public Integer getPRO_GANANCIA() {
+        return PRO_GANANCIA;
     }
 
-    public void setPRO_IVA(Integer PRO_IVA) {
-        this.PRO_IVA = PRO_IVA;
+    public void setPRO_GANANCIA(Integer PRO_IVA) {
+        this.PRO_GANANCIA = PRO_IVA;
     }
 
     public String getPRO_IVA_TIPO() {
@@ -171,6 +208,12 @@ public class PRODUCTO {
     public void setPRO_ESTADO(String PRO_ESTADO) {
         this.PRO_ESTADO = PRO_ESTADO;
     }
-    
-    
+
+    public Double getPRO_VALOR_FABRICA() {
+        return PRO_VALOR_FABRICA;
+    }
+
+    public void setPRO_VALOR_FABRICA(Double PRO_VALOR_FABRICA) {
+        this.PRO_VALOR_FABRICA = PRO_VALOR_FABRICA;
+    }
 }

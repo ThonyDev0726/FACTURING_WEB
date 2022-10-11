@@ -4,6 +4,7 @@
  */
 package Interfaces;
 
+import Model.CATEGORIA_PRODUCTO;
 import Model.PRODUCTO;
 import java.util.List;
 
@@ -11,7 +12,7 @@ import java.util.List;
  *
  * @author perez
  */
-public interface crud_producto {
+public interface crud_producto{
 
     public List listar();
 

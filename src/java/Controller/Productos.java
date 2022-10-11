@@ -1,8 +1,11 @@
 package Controller;
 
+import Converters.Convertidor;
 import Model.CATEGORIA_PRODUCTO;
+import Model.PRODUCTO;
 import Model.USUARIO;
 import ModelDAO.CATEGORIA_PRODUCTO_DAO;
+import ModelDAO.PRODUCTO_DAO;
 import java.io.IOException;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -20,25 +23,50 @@ import java.time.LocalDate;
 @WebServlet(name = "Productos", urlPatterns = {"/Productos"})
 public class Productos extends HttpServlet {
 
+    /* ==================== VARIABLES GLOBALES ==================== */
+    Convertidor convertidor = new Convertidor();
+    PRODUCTO producto = new PRODUCTO();
+    PRODUCTO_DAO proDAO = new PRODUCTO_DAO();
     CATEGORIA_PRODUCTO categoria = new CATEGORIA_PRODUCTO();
     CATEGORIA_PRODUCTO_DAO DAO = new CATEGORIA_PRODUCTO_DAO();
     LocalDate todaysDate = LocalDate.now();
-//========================================================================================== VARIABLES GLOBALES     
+    String fecha = todaysDate.toString();
+    /* ==================== VARIABLES RUTA ==================== */
     String REGISTROS = "views/administrador/productos.jsp";
     String EDITAR_CATEGORIA = "views/administrador/categorias-editar.jsp";
     String EDITAR_PRODUCTO = "views/administrador/productos-editar.jsp";
-//========================================================================================== VARIABLES CATEGORIA     
+    /* ==================== VARIABLES CATEGORIA ==================== */
     Integer ID_CATEGORIA;
     String CAT_DESCRIPCION;
     String CAT_ESTADO;
     String CAT_IP;
-//========================================================================================== VARIABLES GLOBALES     
+    /* ==================== VARIABLES PRODUCTO ==================== */
+    Integer ID_PRODUCTO;
+    Integer FK_SUCURSAL;
+    Integer FK_PROVEEDOR;
+    Integer FK_CATEGORIA;
+    String PRO_NOMBRE;
+    String PRO_CODIGO;
+    Integer PRO_STOCK;
+    Double PRO_VALOR_FABRICA;
+    Double PRO_VALOR_UNITARIO;
+    Integer PRO_GANANCIA;
+    String PRO_IVA_TIPO;
+    String PRO_USO;
+    String PRO_IMG1;
+    String PRO_IMG2;
+    String PRO_IMG3;
+    String PRO_IMG4;
+    String PRO_CREACION;
+    String PRO_CREADOR;
+    String PRO_IP;
+    String PRO_ESTADO;
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String acceso = "";
         String action = request.getParameter("accion");
-        //========================================================================================== GLOBALES
+        /* ==================== GLOBALES ==================== */
         String LOGIN = "views/Login.jsp";
         HttpSession session = request.getSession();
         USUARIO usu = (USUARIO) session.getAttribute("usuario");
@@ -47,6 +75,7 @@ public class Productos extends HttpServlet {
             request.getRequestDispatcher(LOGIN).forward(request, response);
         } else {
             switch (action) {
+                /* ==================== CATEGORIA DE PRODUCTOS ==================== */
                 case "registro-productos":
                     request.setAttribute("div_si", "sr-only");
                     request.setAttribute("div_no", "sr-only");
@@ -85,6 +114,11 @@ public class Productos extends HttpServlet {
                     }
                     acceso = REGISTROS;
                     break;
+                /* ==================== PRODUCTOS ==================== */
+                    case "editar-a":
+                    request.setAttribute("idProducto", request.getParameter("idProducto"));
+                    acceso = EDITAR_PRODUCTO;
+                    break;
                 default:
                     request.setAttribute("div_si", "sr-only");
                     request.setAttribute("div_no", "sr-only");
@@ -100,7 +134,7 @@ public class Productos extends HttpServlet {
 
         String acceso = "";
         String action = request.getParameter("accion");
-        //========================================================================================== GLOBALES
+        /* ==================== GLOBALES ==================== */
         String LOGIN = "views/Login.jsp";
         HttpSession session = request.getSession();
         USUARIO usu = (USUARIO) session.getAttribute("usuario");
@@ -108,12 +142,12 @@ public class Productos extends HttpServlet {
             request.setAttribute("iniciarSesion", "Debes iniciar sesion, para acceder al contenido!!");
             request.getRequestDispatcher(LOGIN).forward(request, response);
         } else {
+            /* ==================== CATEGORIA DE PRODUCTOS ==================== */
             switch (action) {
                 case "Guardar categoria":
                     CAT_DESCRIPCION = request.getParameter("txt-categoria-descripcion");
                     CAT_ESTADO = "EN LINEA";
                     CAT_IP = request.getParameter("txt-ip");
-
                     /* ========== DAR VALORES AL OBJETO =========*/
                     categoria.setCAT_DESCRIPCION(CAT_DESCRIPCION);
                     categoria.setCAT_ESTADO(CAT_ESTADO);
@@ -129,10 +163,6 @@ public class Productos extends HttpServlet {
                         request.setAttribute("div_si", "sr-only");
                     }
                     acceso = REGISTROS;
-                    break;
-                case "editar-a":
-                    request.setAttribute("idCliente", request.getParameter("idCliente"));
-                    acceso = EDITAR_CATEGORIA;
                     break;
                 case "Actualizar categoria":
                     ID_CATEGORIA = Integer.parseInt(request.getParameter("txt-id-categoria"));
@@ -154,6 +184,59 @@ public class Productos extends HttpServlet {
                     }
                     acceso = REGISTROS;
                     break;
+                /* ==================== PRODUCTOS ==================== */
+                case "Guardar":
+                    FK_SUCURSAL = Integer.parseInt(request.getParameter("cbx-sucursal"));
+                    FK_PROVEEDOR = Integer.parseInt(request.getParameter("txt-id-proveedor"));
+                    FK_CATEGORIA = convertidor.obtenerNumero(request.getParameter("txt-categoria"));
+                    PRO_NOMBRE = request.getParameter("txt-nombre-producto");
+                    PRO_CODIGO = request.getParameter("txt-codigo");
+                    PRO_STOCK = Integer.parseInt(request.getParameter("txt-stock"));
+                    PRO_VALOR_FABRICA = Double.parseDouble(request.getParameter("txt-valor-fabrica"));
+                    PRO_VALOR_UNITARIO = Double.parseDouble(request.getParameter("txt-valor-unitario"));
+                    PRO_GANANCIA = Integer.parseInt(request.getParameter("txt-ganancia"));
+                    PRO_IVA_TIPO = request.getParameter("txt-iva-tipo");
+                    PRO_USO = request.getParameter("txt-uso-producto");
+                    PRO_IMG1 = request.getParameter("txt-img-1");
+                    PRO_IMG2 = request.getParameter("txt-img-2");
+                    PRO_IMG3 = request.getParameter("txt-img-3");
+                    PRO_IMG4 = request.getParameter("txt-img-4");
+                    PRO_CREACION = fecha;
+                    PRO_CREADOR = request.getParameter("txt-usuario");
+                    PRO_IP = request.getParameter("txt-ip");
+                    PRO_ESTADO = "EN LINEA";
+                    /* ==================== PRODUCTOS ==================== */
+                    producto.setFK_SUCURSAL(FK_SUCURSAL);
+                    producto.setFK_PROVEEDOR(FK_PROVEEDOR);
+                    producto.setFK_CATEGORIA(FK_CATEGORIA);
+                    producto.setPRO_NOMBRE(PRO_NOMBRE);
+                    producto.setPRO_CODIGO(PRO_CODIGO);
+                    producto.setPRO_STOCK(PRO_STOCK);
+                    producto.setPRO_VALOR_FABRICA(PRO_VALOR_FABRICA);
+                    producto.setPRO_VALOR_UNITARIO(PRO_VALOR_UNITARIO);
+                    producto.setPRO_GANANCIA(PRO_GANANCIA);
+                    producto.setPRO_IVA_TIPO(PRO_IVA_TIPO);
+                    producto.setPRO_USO(PRO_USO);
+                    producto.setPRO_IMG1(PRO_IMG1);
+                    producto.setPRO_IMG2(PRO_IMG2);
+                    producto.setPRO_IMG3(PRO_IMG3);
+                    producto.setPRO_IMG4(PRO_IMG4);
+                    producto.setPRO_CREACION(PRO_CREACION);
+                    producto.setPRO_CREADOR(PRO_CREADOR);
+                    producto.setPRO_IP(PRO_IP);
+                    producto.setPRO_ESTADO(PRO_ESTADO);
+                    if (proDAO.add(producto) == "El producto fue creado con exito!") {
+                        request.setAttribute("msj_si", "El producto " + PRO_NOMBRE + " fue creado con exito!");
+                        request.setAttribute("div_si", "visible");
+                        request.setAttribute("div_no", "sr-only");
+                    } else if (proDAO.add(producto) == "El producto no fue creado con exito!") {
+                        request.setAttribute("msj_no", "El producto no fue creado con exito!");
+                        request.setAttribute("div_no", "visible");
+                        request.setAttribute("div_si", "sr-only");
+                    }
+                    acceso = REGISTROS;
+                    break;
+                
                 default:
                     request.setAttribute("div_si", "sr-only");
                     request.setAttribute("div_no", "sr-only");

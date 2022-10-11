@@ -27,7 +27,7 @@ public class PROVEEDOR_DAO implements crud_proveedor {
     ResultSet rs;
 
     /* ============== VARIABLES PARA PROCEDIMIENTOS ALMACENADOS ==============*/
-    String LISTAR_EN_LINEA = "CALL A_SELECT_PROVEEDOR_LINEA()";
+    String LISTAR_EN_LINEA = "CALL A_SELECT_ALL_PROVEEDOR_LINEA()";
     String LISTAR = "CALL A_SELECT_ALL_PROVEEDOR()";
     String LISTAR_ID = "CALL A_SELECT_ID_PROVEEDOR(?)";
     String CREAR = "CALL INSERT_PROVEEDOR(?,?,?,?,?,?,?,?,?,?,?,?)";
@@ -161,7 +161,32 @@ public class PROVEEDOR_DAO implements crud_proveedor {
 
     @Override
     public List listar_en_linea() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        ArrayList<PROVEEDOR> lista = new ArrayList<>();
+        try {
+            con = (Connection) cn.getConexion();
+            cs = con.prepareCall(LISTAR_EN_LINEA);
+            rs = cs.executeQuery();
+            while (rs.next()) {
+                PROVEEDOR pro = new PROVEEDOR();
+                pro.setID_PROVEEDOR(rs.getInt(1));
+                pro.setSUC_NOMBRE(rs.getString(2));
+                pro.setPRO_EMPRESA(rs.getString(3));
+                pro.setPRO_CONTACTO(rs.getString(4));
+                pro.setPRO_RUC(rs.getString(5));
+                pro.setPRO_TELEFONO(rs.getString(6));
+                pro.setPRO_EMAIL(rs.getString(7));
+                pro.setPRO_DIRECCION(rs.getString(8));
+                pro.setPRO_WEB(rs.getString(9));
+                pro.setPRO_CREACION(rs.getString(10));
+                pro.setPRO_CREADOR(rs.getString(11));
+                pro.setPRO_ESTADO(rs.getString(12));
+                lista.add(pro);
+            }
+            System.out.println(LISTAR);
+        } catch (SQLException ex) {
+            System.out.println("ERROR AL LISTAR LOS PROVEEDORES EN LINEA" + ex);
+        }
+        return lista;
     }
 
     @Override
