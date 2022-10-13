@@ -106,7 +106,7 @@
                                     <h5 style="color: red;">${errorSesion}</h5>
                                 </center>
                                 <br>
-                                <input class="button button--flex" style="border: none;" type="submit" value="INGRESAR" name="btn-login">
+                                <input class="button button--flex" style="border: none; height: 50px" type="submit" value="INGRESAR" name="btn-login">
                             </form>
                         </div>
                     </div>

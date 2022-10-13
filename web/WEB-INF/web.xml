@@ -52,6 +52,14 @@
         <error-code>404</error-code>
         <location>/paginas-error/404.jsp</location>
     </error-page>
+    <error-page>
+        <error-code>500</error-code>
+        <location>/paginas-error/500.jsp</location>
+    </error-page>
+    <error-page>
+        <error-code>404</error-code>
+        <location>/paginas-error/404.jsp</location>
+    </error-page>
     <session-config>
         <session-timeout>
             <!-- ======== MINUTOS POR SESION ACTIVA ======== -->
