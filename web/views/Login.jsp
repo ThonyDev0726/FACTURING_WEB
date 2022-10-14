@@ -110,24 +110,17 @@
                             </form>
                         </div>
                     </div>
-
-
                 </div>
             </section>
-
         </main>
         <!--==================== FOOTER ====================-->
-
-
         <!--========== SCROLL TOP ==========-->
         <a href="#" class="scrollup" id="scroll-top">
             <i class="uil uil-arrow-up scrollup__icon"></i>
         </a>
-
-        <!--==================== SWIPER JS ====================-->
+        <!-- ==================== SWIPER JS ==================== -->
         <script src="js/swiper-bundle.min.js"></script>
-
-        <!--==================== MAIN JS ====================-->       
+        <!-- ==================== MAIN JS ==================== -->       
         <script src="js/main.js" type="text/javascript"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="js/loader.js" type="text/javascript"></script>
