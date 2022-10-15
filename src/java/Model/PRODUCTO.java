@@ -15,12 +15,14 @@ public class PRODUCTO {
     private String CAT_NOMBRE;
     private String PRO_NOMBRE;
     private String PRO_CODIGO;
+    private String PRO_CODIGO_AUX;
     private Integer PRO_STOCK;
     private Double PRO_VALOR_FABRICA;
     private Double PRO_VALOR_UNITARIO;
     private Integer PRO_GANANCIA;
     private String PRO_IVA_TIPO;
     private String PRO_USO;
+    private String PRO_USO_EXTRA;
     private String PRO_IMG1;
     private String PRO_IMG2;
     private String PRO_IMG3;
@@ -105,12 +107,28 @@ public class PRODUCTO {
         this.PRO_CODIGO = PRO_CODIGO;
     }
 
+    public String getPRO_CODIGO_AUX() {
+        return PRO_CODIGO_AUX;
+    }
+
+    public void setPRO_CODIGO_AUX(String PRO_CODIGO_AUX) {
+        this.PRO_CODIGO_AUX = PRO_CODIGO_AUX;
+    }
+
     public Integer getPRO_STOCK() {
         return PRO_STOCK;
     }
 
     public void setPRO_STOCK(Integer PRO_STOCK) {
         this.PRO_STOCK = PRO_STOCK;
+    }
+
+    public Double getPRO_VALOR_FABRICA() {
+        return PRO_VALOR_FABRICA;
+    }
+
+    public void setPRO_VALOR_FABRICA(Double PRO_VALOR_FABRICA) {
+        this.PRO_VALOR_FABRICA = PRO_VALOR_FABRICA;
     }
 
     public Double getPRO_VALOR_UNITARIO() {
@@ -125,8 +143,8 @@ public class PRODUCTO {
         return PRO_GANANCIA;
     }
 
-    public void setPRO_GANANCIA(Integer PRO_IVA) {
-        this.PRO_GANANCIA = PRO_IVA;
+    public void setPRO_GANANCIA(Integer PRO_GANANCIA) {
+        this.PRO_GANANCIA = PRO_GANANCIA;
     }
 
     public String getPRO_IVA_TIPO() {
@@ -143,6 +161,14 @@ public class PRODUCTO {
 
     public void setPRO_USO(String PRO_USO) {
         this.PRO_USO = PRO_USO;
+    }
+
+    public String getPRO_USO_EXTRA() {
+        return PRO_USO_EXTRA;
+    }
+
+    public void setPRO_USO_EXTRA(String PRO_USO_EXTRA) {
+        this.PRO_USO_EXTRA = PRO_USO_EXTRA;
     }
 
     public String getPRO_IMG1() {
@@ -209,11 +235,4 @@ public class PRODUCTO {
         this.PRO_ESTADO = PRO_ESTADO;
     }
 
-    public Double getPRO_VALOR_FABRICA() {
-        return PRO_VALOR_FABRICA;
-    }
-
-    public void setPRO_VALOR_FABRICA(Double PRO_VALOR_FABRICA) {
-        this.PRO_VALOR_FABRICA = PRO_VALOR_FABRICA;
-    }
 }

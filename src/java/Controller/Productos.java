@@ -47,12 +47,14 @@ public class Productos extends HttpServlet {
     Integer FK_CATEGORIA;
     String PRO_NOMBRE;
     String PRO_CODIGO;
+    String PRO_CODIGO_AUX;
     Integer PRO_STOCK;
     Double PRO_VALOR_FABRICA;
     Double PRO_VALOR_UNITARIO;
     Integer PRO_GANANCIA;
     String PRO_IVA_TIPO;
     String PRO_USO;
+    String PRO_USO_EXTRA;
     String PRO_IMG1;
     String PRO_IMG2;
     String PRO_IMG3;
@@ -118,6 +120,35 @@ public class Productos extends HttpServlet {
                     case "editar-a":
                     request.setAttribute("idProducto", request.getParameter("idProducto"));
                     acceso = EDITAR_PRODUCTO;
+                    break;
+                    case "dar_baja":
+                    ID_PRODUCTO = Integer.parseInt(request.getParameter("idProducto"));
+                    PRO_ESTADO = "DE BAJA";
+                    /* ========== ENVIO EL OBJETO A LA DB=========*/
+                    if (proDAO.actualizar_estado(ID_PRODUCTO, PRO_ESTADO) == "El producto fue dada de baja con exito!") {
+                        request.setAttribute("msj_si", "El producto fue dada de baja con exito!");
+                        request.setAttribute("div_si", "visible");
+                        request.setAttribute("div_no", "sr-only");
+                    } else if (proDAO.actualizar_estado(ID_PRODUCTO, PRO_ESTADO) == "Error al dar baja al producto!") {
+                        request.setAttribute("msj_no", "Error al dar baja al producto!");
+                        request.setAttribute("div_no", "visible");
+                        request.setAttribute("div_si", "sr-only");
+                    }
+                    acceso = REGISTROS;
+                    break;
+                    case "eliminar":
+                    ID_PRODUCTO = Integer.parseInt((String) request.getParameter("idProducto"));
+                    /* ========== ENVIO EL OBJETO A LA DB=========*/
+                    if (proDAO.delete(ID_PRODUCTO) == "El producto fue eliminada con exito!") {
+                        request.setAttribute("msj_si", "El producto fue eliminado con exito");
+                        request.setAttribute("div_si", "visible");
+                        request.setAttribute("div_no", "sr-only");
+                    } else if (proDAO.delete(ID_PRODUCTO) == "Error al eliminar el producto!") {
+                        request.setAttribute("msj_no", "No se pudo eliminar el producto!");
+                        request.setAttribute("div_no", "visible");
+                        request.setAttribute("div_si", "sr-only");
+                    }
+                    acceso = REGISTROS;
                     break;
                 default:
                     request.setAttribute("div_si", "sr-only");
@@ -191,12 +222,14 @@ public class Productos extends HttpServlet {
                     FK_CATEGORIA = convertidor.obtenerNumero(request.getParameter("txt-categoria"));
                     PRO_NOMBRE = request.getParameter("txt-nombre-producto");
                     PRO_CODIGO = request.getParameter("txt-codigo");
+                    PRO_CODIGO_AUX = request.getParameter("txt-codigo-auxiliar");
                     PRO_STOCK = Integer.parseInt(request.getParameter("txt-stock"));
                     PRO_VALOR_FABRICA = Double.parseDouble(request.getParameter("txt-valor-fabrica"));
                     PRO_VALOR_UNITARIO = Double.parseDouble(request.getParameter("txt-valor-unitario"));
                     PRO_GANANCIA = Integer.parseInt(request.getParameter("txt-ganancia"));
                     PRO_IVA_TIPO = request.getParameter("txt-iva-tipo");
                     PRO_USO = request.getParameter("txt-uso-producto");
+                    PRO_USO_EXTRA = request.getParameter("txt-uso-extra");
                     PRO_IMG1 = request.getParameter("txt-img-1");
                     PRO_IMG2 = request.getParameter("txt-img-2");
                     PRO_IMG3 = request.getParameter("txt-img-3");
@@ -211,12 +244,14 @@ public class Productos extends HttpServlet {
                     producto.setFK_CATEGORIA(FK_CATEGORIA);
                     producto.setPRO_NOMBRE(PRO_NOMBRE);
                     producto.setPRO_CODIGO(PRO_CODIGO);
+                    producto.setPRO_CODIGO_AUX(PRO_CODIGO_AUX);
                     producto.setPRO_STOCK(PRO_STOCK);
                     producto.setPRO_VALOR_FABRICA(PRO_VALOR_FABRICA);
                     producto.setPRO_VALOR_UNITARIO(PRO_VALOR_UNITARIO);
                     producto.setPRO_GANANCIA(PRO_GANANCIA);
                     producto.setPRO_IVA_TIPO(PRO_IVA_TIPO);
                     producto.setPRO_USO(PRO_USO);
+                    producto.setPRO_USO_EXTRA(PRO_USO_EXTRA);
                     producto.setPRO_IMG1(PRO_IMG1);
                     producto.setPRO_IMG2(PRO_IMG2);
                     producto.setPRO_IMG3(PRO_IMG3);
@@ -235,8 +270,58 @@ public class Productos extends HttpServlet {
                         request.setAttribute("div_si", "sr-only");
                     }
                     acceso = REGISTROS;
-                    break;
-                
+                    break;                
+                case "Actualizar":
+                    ID_PRODUCTO = Integer.parseInt(request.getParameter("txt-id-producto"));
+                    FK_SUCURSAL = Integer.parseInt(request.getParameter("cbx-sucursal"));
+                    FK_PROVEEDOR = Integer.parseInt(request.getParameter("txt-id-proveedor"));
+                    FK_CATEGORIA = convertidor.obtenerNumero(request.getParameter("txt-categoria"));
+                    PRO_NOMBRE = request.getParameter("txt-nombre-producto");
+                    PRO_CODIGO = request.getParameter("txt-codigo");
+                    PRO_CODIGO_AUX = request.getParameter("txt-codigo-auxiliar");
+                    PRO_STOCK = Integer.parseInt(request.getParameter("txt-stock"));
+                    PRO_VALOR_FABRICA = Double.parseDouble(request.getParameter("txt-ganancia"));
+                    PRO_VALOR_UNITARIO = Double.parseDouble(request.getParameter("txt-valor-unitario"));
+                    PRO_GANANCIA = Integer.parseInt(request.getParameter("txt-ganancia"));
+                    PRO_IVA_TIPO = request.getParameter("txt-iva-tipo");
+                    PRO_USO = request.getParameter("txt-uso-producto");
+                    PRO_USO_EXTRA = request.getParameter("txt-uso-extra");
+                    PRO_IMG1 = request.getParameter("txt-img-1");
+                    PRO_IMG2 = request.getParameter("txt-img-2");
+                    PRO_IMG3 = request.getParameter("txt-img-3");
+                    PRO_IMG4 = request.getParameter("txt-img-4");
+                    PRO_ESTADO = request.getParameter("cbx-estado");
+                    /* ==================== PRODUCTOS ==================== */
+                    producto.setID_PRODUCTO(ID_PRODUCTO);
+                    producto.setFK_SUCURSAL(FK_SUCURSAL);
+                    producto.setFK_PROVEEDOR(FK_PROVEEDOR);
+                    producto.setFK_CATEGORIA(FK_CATEGORIA);
+                    producto.setPRO_NOMBRE(PRO_NOMBRE);
+                    producto.setPRO_CODIGO(PRO_CODIGO);
+                    producto.setPRO_CODIGO_AUX(PRO_CODIGO_AUX);
+                    producto.setPRO_STOCK(PRO_STOCK);
+                    producto.setPRO_VALOR_FABRICA(PRO_VALOR_FABRICA);
+                    producto.setPRO_VALOR_UNITARIO(PRO_VALOR_UNITARIO);
+                    producto.setPRO_GANANCIA(PRO_GANANCIA);
+                    producto.setPRO_IVA_TIPO(PRO_IVA_TIPO);
+                    producto.setPRO_USO(PRO_USO);
+                    producto.setPRO_USO_EXTRA(PRO_USO_EXTRA);
+                    producto.setPRO_IMG1(PRO_IMG1);
+                    producto.setPRO_IMG2(PRO_IMG2);
+                    producto.setPRO_IMG3(PRO_IMG3);
+                    producto.setPRO_IMG4(PRO_IMG4);
+                    producto.setPRO_ESTADO(PRO_ESTADO);
+                    if (proDAO.update(producto) == "El producto fue actualizado con exito!") {
+                        request.setAttribute("msj_si", "El producto " + PRO_NOMBRE + " fue actualizado con exito!");
+                        request.setAttribute("div_si", "visible");
+                        request.setAttribute("div_no", "sr-only");
+                    } else if (proDAO.update(producto) == "El producto no fue actualizado con exito!") {
+                        request.setAttribute("msj_no", "El producto no fue actualizado con exito!");
+                        request.setAttribute("div_no", "visible");
+                        request.setAttribute("div_si", "sr-only");
+                    }
+                    acceso = REGISTROS;
+                    break;                
                 default:
                     request.setAttribute("div_si", "sr-only");
                     request.setAttribute("div_no", "sr-only");

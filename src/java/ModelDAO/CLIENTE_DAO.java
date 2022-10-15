@@ -27,7 +27,7 @@ public class CLIENTE_DAO implements crud_cliente {
     String LISTAR = "CALL A_SELECT_CLIENTE()";
     String LISTAR_ID = "CALL A_S_ID_CLIENTE(?)";
     String CREAR = "CALL INSERT_CLIENTE(?,?,?,?,?,?,?,?,?,?,?,?)";
-    String ACTUALIZAR = "CALL UPDATE_CLIENTE(?,?,?,?,?,?,?,?,?)";
+    String ACTUALIZAR = "CALL UPDATE_CLIENTE(?,?,?,?,?,?,?,?,?,?)";
     String ELIMINAR = "CALL DELETE_CLIENTE(?)";
     String ACTUALIZAR_ESTADO = "CALL UPDATE_CLIENTE_ESTADO(?,?)";
 
@@ -96,14 +96,15 @@ public class CLIENTE_DAO implements crud_cliente {
             rs = cs.executeQuery();
             while (rs.next()) {
                 c.setID_CLIENTE(rs.getInt(1));
-                c.setCLI_NOMBRES(rs.getString(2));
-                c.setCLI_APELLIDOS(rs.getString(3));
-                c.setCLI_CEDULA(rs.getString(4));
-                c.setCLI_RUC(rs.getString(5));
-                c.setCLI_EMAIL(rs.getString(6));
-                c.setCLI_TELEFONO(rs.getString(7));
-                c.setCLI_DIRECCION(rs.getString(8));
-                c.setCLI_CUMPLEANOS(rs.getString(9));
+                c.setCLI_ESTADO(rs.getString(2));
+                c.setCLI_NOMBRES(rs.getString(3));
+                c.setCLI_APELLIDOS(rs.getString(4));
+                c.setCLI_CEDULA(rs.getString(5));
+                c.setCLI_RUC(rs.getString(6));
+                c.setCLI_EMAIL(rs.getString(7));
+                c.setCLI_TELEFONO(rs.getString(8));
+                c.setCLI_DIRECCION(rs.getString(9));
+                c.setCLI_CUMPLEANOS(rs.getString(10));
             }
             System.out.println(LISTAR_ID);
         } catch (SQLException ex) {
@@ -153,6 +154,7 @@ public class CLIENTE_DAO implements crud_cliente {
             cs.setString(7, cli.getCLI_TELEFONO());
             cs.setString(8, cli.getCLI_DIRECCION());
             cs.setString(9, cli.getCLI_CUMPLEANOS());
+            cs.setString(10, cli.getCLI_ESTADO());
             System.out.println(ACTUALIZAR);
             cs.execute();
         } catch (SQLException ex) {

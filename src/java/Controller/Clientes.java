@@ -178,6 +178,7 @@ public class Clientes extends HttpServlet {
                     CLI_TELEFONO = request.getParameter("txt-telefono-u");
                     CLI_DIRECCION = request.getParameter("txt-direccion-u");
                     CLI_CUMPLEANOS = request.getParameter("txt-cumple-u");
+                    CLI_ESTADO = request.getParameter("cbx-estado");
                     /* ========== DAR VALORES AL OBJETO =========*/
                     cli.setID_CLIENTE(ID_CLIENTE);
                     cli.setCLI_NOMBRES(CLI_NOMBRES.toUpperCase());
@@ -188,6 +189,7 @@ public class Clientes extends HttpServlet {
                     cli.setCLI_TELEFONO(CLI_TELEFONO.toUpperCase());
                     cli.setCLI_DIRECCION(CLI_DIRECCION.toUpperCase());
                     cli.setCLI_CUMPLEANOS(CLI_CUMPLEANOS.toUpperCase());
+                    cli.setCLI_ESTADO(CLI_ESTADO.toUpperCase());
                     /* ========== ENVIO EL OBJETO A LA DB=========*/
                     if (DAO.update(cli) == "El cliente fue actualizado con exito!") {
                         request.setAttribute("msj_si", "El cliente " + CLI_NOMBRES + " " + CLI_APELLIDOS + " fue actualizado con exito");
