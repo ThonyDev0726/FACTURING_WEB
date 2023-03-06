@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package ModelDAO;
 
 import DataBase.Conexion;
@@ -29,11 +25,13 @@ public class PRODUCTO_DAO implements crud_producto {
     /* ============== VARIABLES PARA PROCEDIMIENTOS ALMACENADOS ==============*/
     String LISTAR_EN_LINEA = "CALL A_SELECT_ALL_PROVEEDOR_LINEA()";
     String LISTAR = "CALL SELECT_PRODUCTO()";
+    String LISTAR_STOCK = "CALL SELECT_STOCK(?)";
     String LISTAR_ID = "CALL SELECT_ID_PRODUCTO(?)";
     String CREAR = "CALL INSERT_PRODUCTO(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
     String ACTUALIZAR = "CALL UPDATE_PRODUCTO(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
     String ELIMINAR = "CALL DELETE_PRODUCTO(?)";
     String ACTUALIZAR_ESTADO = "CALL UPDATE_PRODUCTO_ESTADO(?,?)";
+    String ACTUALIZAR_STOCK = "CALL UPDATE_STOCK(?,?)";
 
     @Override
     public List listar() {
@@ -108,6 +106,23 @@ public class PRODUCTO_DAO implements crud_producto {
             System.out.println("ERROR AL LISTAR EL PRODUCTO" + ex);
         }
         return p;
+    }
+
+    public Integer listStock(int idProducto) {
+        int Stock = 0;
+        try {
+            con = (Connection) cn.getConexion();
+            cs = con.prepareCall(LISTAR_STOCK);
+            cs.setInt(1, idProducto);
+            rs = cs.executeQuery();
+            while (rs.next()) {
+                Stock = rs.getInt(1);
+            }
+            System.out.println(LISTAR_ID);
+        } catch (SQLException ex) {
+            System.out.println("ERROR AL LISTAR EL PRODUCTO" + ex);
+        }
+        return Stock;
     }
 
     @Override
@@ -212,6 +227,22 @@ public class PRODUCTO_DAO implements crud_producto {
             cs.execute();
         } catch (SQLException ex) {
             System.out.println("ERROR AL DAR DE BAJA AL PRODUCTO");
+            System.out.println(ex);
+            return "Error al dar baja al producto!";
+        }
+        return "El producto fue dada de baja con exito!";
+    }
+
+    public String actualizarStock(int id, int stock) {
+        try {
+            con = (Connection) cn.getConexion();
+            CallableStatement cs = con.prepareCall(ACTUALIZAR_STOCK);
+            cs.setInt(1, id);
+            cs.setInt(2, stock);
+            System.out.println(ACTUALIZAR_STOCK);
+            cs.execute();
+        } catch (SQLException ex) {
+            System.out.println("ERROR AL ACTUALIZAR EL STOCK " + ex.getMessage());
             System.out.println(ex);
             return "Error al dar baja al producto!";
         }

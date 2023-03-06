@@ -104,7 +104,7 @@ function deleteAllCookie(reload = true)
 
     var dlabThemeSet0 = {/* Default Theme */
         typography: "poppins",
-        version: "dark",
+        version: "light",
         layout: "vertical",
         primary: "color_14",
         headerBg: "color_1",

@@ -1,9 +1,5 @@
 package Model;
 
-/**
- *
- * @author perez
- */
 public class DETALLE_FACTURA {
 
     private Integer ID_DETALLE;

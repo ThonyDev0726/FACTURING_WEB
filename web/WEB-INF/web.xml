@@ -24,6 +24,14 @@
         <servlet-name>Eventos</servlet-name>
         <servlet-class>Controller.Eventos</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AgregarDetalle</servlet-name>
+        <servlet-class>Controller.AgregarDetalle</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AggDetalle</servlet-name>
+        <servlet-class>Controller.AggDetalle</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -60,6 +68,14 @@
         <error-code>404</error-code>
         <location>/paginas-error/404.jsp</location>
     </error-page>
+    <servlet-mapping>
+        <servlet-name>AgregarDetalle</servlet-name>
+        <url-pattern>/AgregarDetalle</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AggDetalle</servlet-name>
+        <url-pattern>/AggDetalle</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             <!-- ======== MINUTOS POR SESION ACTIVA ======== -->

@@ -68,7 +68,7 @@
                             <a href="https://facebook.com/" target="_blank" class="home__social-icon">
                                 <i class="uil uil-facebook-f"></i>
                             </a>
-                            
+
                             <a href="https://twitter.com/" target="_blank" class="home__social-icon">
                                 <i class="uil uil-twitter"></i>
                             </a>
@@ -106,7 +106,10 @@
                                     <h5 style="color: red;">${errorSesion}</h5>
                                 </center>
                                 <br>
-                                <input class="button button--flex" style="border: none; height: 50px" type="submit" value="INGRESAR" name="btn-login">
+                                <center>
+                                    <input class="button button--flex" style="border: none; height: 50px" type="submit" value="INGRESAR" name="btn-login">
+
+                                </center>
                             </form>
                         </div>
                     </div>
@@ -172,10 +175,10 @@
                 var getPasword = document.getElementById("pswrd");
                 if (getPasword.type === "password") {
                     getPasword.type = "text";
-                    document.getElementById('label').innerHTML= 'Ocultar contraseña';
+                    document.getElementById('label').innerHTML = 'Ocultar contraseña';
                 } else {
                     getPasword.type = "password";
-                    document.getElementById('label').innerHTML= 'Mostrar contraseña';
+                    document.getElementById('label').innerHTML = 'Mostrar contraseña';
                 }
             }
         </script>

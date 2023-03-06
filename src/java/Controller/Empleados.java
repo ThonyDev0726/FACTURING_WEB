@@ -189,7 +189,7 @@ public class Empleados extends HttpServlet {
                     EMP_DIRECCION = request.getParameter("txt-direccion-u");
                     EMP_CUMPLEANOS = request.getParameter("txt-cumple-u");
                     EMP_ESTADO = request.getParameter("cbx-estado-u");
-                    EMP_IMG = request.getParameter("txt-img-u");
+                    EMP_IMG = request.getParameter("txt-img");
                     /* ========== DAR VALORES AL OBJETO =========*/
                     emp.setID_EMPLEADO(ID_EMPLEADO);
                     emp.setFK_SUCURSAL(FK_SUCURSAL);
